@@ -43,8 +43,8 @@
 		<MauiIcon Include="Resources\AppIcon\wordleicon.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
+		<MauiSplashScreen Include="Resources\Splash\wordlesplash.svg" Color="Transparent" BaseSize="128, 128" />
+		
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
@@ -59,6 +59,11 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\wordleicon.svg" />
 	  <None Remove="Resources\Splash\splashscreen.svg" />
+	  <None Remove="Resources\Splash\wordlesplash.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\wordlesplash.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
