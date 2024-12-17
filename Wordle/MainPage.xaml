@@ -5,5 +5,146 @@
              Title="Wordle"
              BackgroundColor="White">
 
-    
+    <ContentPage.Resources>
+        <Style x:Key="gridEntry" TargetType="Entry"> <!-- Entry -->
+            <Setter Property="MaxLength" Value="1"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Keyboard" Value="Text"/>
+            <Setter Property="WidthRequest" Value="80"/>
+            <Setter Property="HeightRequest" Value="80"/>
+        </Style>
+
+        <Style x:Key="borderStyle" TargetType="Border"> <!-- Entry Border -->
+            <Setter Property="Stroke" Value="Gray"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+
+        <Style x:Key="submitBtn" TargetType="Button"> <!-- Submit Button -->
+            <Setter Property="BackgroundColor" Value="Green"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="BorderWidth" Value="2"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="WidthRequest" Value="300"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10" VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="*, *, *, *, *, *" ColumnDefinitions="*, *, *, *, *"
+              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+
+            <!-- Row 1 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+
+            <!-- Row 2 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+
+            <!-- Row 3 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+
+            <!-- Row 4 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+
+            <!-- Row 5 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+
+            <!-- Row 6 -->
+            <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="0">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="1">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="2">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="3">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+            <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="4">
+                <Entry Style="{StaticResource gridEntry}"/>
+            </Border>
+        </Grid>
+
+        <Button Style="{StaticResource submitBtn}" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
+    </StackLayout>
 </ContentPage>
