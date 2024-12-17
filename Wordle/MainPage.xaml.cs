@@ -74,5 +74,15 @@
             }
         } // SaveStream()
 
+        // Method checks what was entered into the entry boxes, only allowing letters
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e) // https://stackoverflow.com/questions/78098837/maui-entry-control-keyboard-to-accept-a-to-z-letters-only
+        {
+            if (!string.IsNullOrEmpty(e.NewTextValue))
+            {
+                var textFiltered = new string(e.NewTextValue.Where(char.IsLetter).ToArray());
+                ((Entry)sender).Text = textFiltered;
+            }
+        } // Entry_TextChanged()
+
     } // MainPage
 } // namespace
