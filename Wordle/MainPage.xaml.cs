@@ -27,6 +27,15 @@
                 // If the file doesn't exist, download and save it
                 await DownloadAndSave(sourceFile, destinationFolder, destinationFileName);
             }
+
+            // Random word generator
+            string[] lines = await File.ReadAllLinesAsync(destinationFilePath);
+            Random random = new Random();
+
+            // Get the word from the file
+            int randomIndex = random.Next(lines.Length);
+            string randomWord = lines[randomIndex];
+            test.Text = randomWord; // TEMPORARY ONLY FOR TESTING
         }
 
         // All code below is for downloading the file for the wordle game
