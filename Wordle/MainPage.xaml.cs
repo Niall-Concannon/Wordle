@@ -5,6 +5,7 @@
         // Variables
         private const string sourceFile = "https://raw.githubusercontent.com/DonH-ITS/jsonfiles/main/words.txt";
         private int currentRow = 0;
+        private List<string> validWords = new List<string>(); // List adds valid words to check in game
 
         public MainPage()
         {
@@ -36,6 +37,12 @@
             // Get the word from the file
             int randomIndex = random.Next(lines.Length);
             string randomWord = lines[randomIndex];
+
+            // Put valid words on the list
+            foreach (string line in lines)
+            {
+                validWords.Add(line.ToUpper()); // Has to be upper or all words are invalid
+            }
 
             // Set the first row to allow input
             Row1Col1.IsEnabled = true;
@@ -102,8 +109,9 @@
 
         private async void Submit_Clicked(object sender, EventArgs e)
         {
-            // Variable
+            // Variables
             bool allFilled = true;
+            string wordValidator = "";
 
             // Check entry boxes
             if (currentRow == 0) // Row 1
@@ -113,6 +121,8 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row1Col1.Text + Row1Col2.Text + Row1Col3.Text + Row1Col4.Text + Row1Col5.Text;
             }
             else if (currentRow == 1) // Row 2
             {
@@ -121,6 +131,8 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row2Col1.Text + Row2Col2.Text + Row2Col3.Text + Row2Col4.Text + Row2Col5.Text;
             }
             else if (currentRow == 2) // Row 3
             {
@@ -129,6 +141,8 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row3Col1.Text + Row3Col2.Text + Row3Col3.Text + Row3Col4.Text + Row3Col5.Text;
             }
             else if (currentRow == 3) // Row 4
             {
@@ -137,6 +151,8 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row4Col1.Text + Row4Col2.Text + Row4Col3.Text + Row4Col4.Text + Row4Col5.Text;
             }
             else if (currentRow == 4) // Row 5
             {
@@ -145,6 +161,8 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row5Col1.Text + Row5Col2.Text + Row5Col3.Text + Row5Col4.Text + Row5Col5.Text;
             }
             else if (currentRow == 5) // Row 6
             {
@@ -153,12 +171,21 @@
                 {
                     allFilled = false;
                 }
+
+                wordValidator = Row6Col1.Text + Row6Col2.Text + Row6Col3.Text + Row6Col4.Text + Row6Col5.Text;
             }
 
             if (!allFilled)
             {
-                await DisplayAlert("Error", "All entry boxes not filled", "OK");
+                await DisplayAlert("Invalid", "Not enough letters", "OK");
                 return;  // Exit
+            }
+
+            // Validate the word
+            if (!IsValidWord(wordValidator))
+            {
+                await DisplayAlert("Invalid", "Not in word list", "OK");
+                return; // Exit
             }
 
             DisableRowEntries(currentRow); // Disable that row
@@ -268,6 +295,11 @@
                     break;
             } // switch
         } // EnableRowEntries()
+
+        private bool IsValidWord(string word) // Check if the word is on the list
+        {
+            return validWords.Contains(word.ToUpper()); // https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.contains?view=net-9.0
+        } // IsValidWord()
 
     } // MainPage
 } // namespace
