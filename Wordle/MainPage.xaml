@@ -44,109 +44,107 @@
 
             <!-- Row 1 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row1Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row1Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row1Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row1Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row1Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
 
             <!-- Row 2 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row2Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row2Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row2Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row2Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row2Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
 
             <!-- Row 3 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row3Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row3Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row3Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row3Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row3Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
 
             <!-- Row 4 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row4Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row4Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row4Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row4Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row4Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
 
             <!-- Row 5 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row5Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row5Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row5Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row5Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row5Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
 
             <!-- Row 6 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="0">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row6Col1" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="1">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row6Col2" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="2">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row6Col3" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="3">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row6Col4" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="4">
-                <Entry Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="Row6Col5" Style="{StaticResource gridEntry}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
             </Border>
         </Grid>
 
-        <Label x:Name="test" TextColor="Black"/> <!-- TEMPORARY ONLY FOR TESTING -->
-
-        <Button Style="{StaticResource submitBtn}" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
+        <Button Style="{StaticResource submitBtn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
 </ContentPage>

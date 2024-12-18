@@ -4,6 +4,7 @@
     {
         // Variables
         private const string sourceFile = "https://raw.githubusercontent.com/DonH-ITS/jsonfiles/main/words.txt";
+        private int currentRow = 0;
 
         public MainPage()
         {
@@ -35,8 +36,14 @@
             // Get the word from the file
             int randomIndex = random.Next(lines.Length);
             string randomWord = lines[randomIndex];
-            test.Text = randomWord; // TEMPORARY ONLY FOR TESTING
-        }
+
+            // Set the first row to allow input
+            Row1Col1.IsEnabled = true;
+            Row1Col2.IsEnabled = true;
+            Row1Col3.IsEnabled = true;
+            Row1Col4.IsEnabled = true;
+            Row1Col5.IsEnabled = true;
+        } // OnAppearing()
 
         // All code below is for downloading the file for the wordle game
         // Website - https://www.code4it.dev/blog/download-and-save-files/ helped
@@ -92,6 +99,175 @@
                 ((Entry)sender).Text = textFiltered;
             }
         } // Entry_TextChanged()
+
+        private async void Submit_Clicked(object sender, EventArgs e)
+        {
+            // Variable
+            bool allFilled = true;
+
+            // Check entry boxes
+            if (currentRow == 0) // Row 1
+            {
+                if (string.IsNullOrEmpty(Row1Col1.Text) || string.IsNullOrEmpty(Row1Col2.Text) || string.IsNullOrEmpty(Row1Col3.Text) ||
+                    string.IsNullOrEmpty(Row1Col4.Text) || string.IsNullOrEmpty(Row1Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+            else if (currentRow == 1) // Row 2
+            {
+                if (string.IsNullOrEmpty(Row2Col1.Text) || string.IsNullOrEmpty(Row2Col2.Text) || string.IsNullOrEmpty(Row2Col3.Text) ||
+                    string.IsNullOrEmpty(Row2Col4.Text) || string.IsNullOrEmpty(Row2Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+            else if (currentRow == 2) // Row 3
+            {
+                if (string.IsNullOrEmpty(Row3Col1.Text) || string.IsNullOrEmpty(Row3Col2.Text) || string.IsNullOrEmpty(Row3Col3.Text) ||
+                    string.IsNullOrEmpty(Row3Col4.Text) || string.IsNullOrEmpty(Row3Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+            else if (currentRow == 3) // Row 4
+            {
+                if (string.IsNullOrEmpty(Row4Col1.Text) || string.IsNullOrEmpty(Row4Col2.Text) || string.IsNullOrEmpty(Row4Col3.Text) ||
+                    string.IsNullOrEmpty(Row4Col4.Text) || string.IsNullOrEmpty(Row4Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+            else if (currentRow == 4) // Row 5
+            {
+                if (string.IsNullOrEmpty(Row5Col1.Text) || string.IsNullOrEmpty(Row5Col2.Text) || string.IsNullOrEmpty(Row5Col3.Text) ||
+                    string.IsNullOrEmpty(Row5Col4.Text) || string.IsNullOrEmpty(Row5Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+            else if (currentRow == 5) // Row 6
+            {
+                if (string.IsNullOrEmpty(Row6Col1.Text) || string.IsNullOrEmpty(Row6Col2.Text) || string.IsNullOrEmpty(Row6Col3.Text) ||
+                    string.IsNullOrEmpty(Row6Col4.Text) || string.IsNullOrEmpty(Row6Col5.Text))
+                {
+                    allFilled = false;
+                }
+            }
+
+            if (!allFilled)
+            {
+                await DisplayAlert("Error", "All entry boxes not filled", "OK");
+                return;  // Exit
+            }
+
+            DisableRowEntries(currentRow); // Disable that row
+
+            if (currentRow < 5) // Only 5 rows
+            {
+                EnableRowEntries(currentRow + 1);
+            }
+
+            currentRow++;  // Next row
+        } // Submit_Clicked()
+
+        private void DisableRowEntries(int row)
+        {
+            switch (row)
+            {
+                case 0: // Row 1
+                    Row1Col1.IsEnabled = false;
+                    Row1Col2.IsEnabled = false;
+                    Row1Col3.IsEnabled = false;
+                    Row1Col4.IsEnabled = false;
+                    Row1Col5.IsEnabled = false;
+                    break;
+                case 1: // Row 2
+                    Row2Col1.IsEnabled = false;
+                    Row2Col2.IsEnabled = false;
+                    Row2Col3.IsEnabled = false;
+                    Row2Col4.IsEnabled = false;
+                    Row2Col5.IsEnabled = false;
+                    break;
+                case 2: // Row 3
+                    Row3Col1.IsEnabled = false;
+                    Row3Col2.IsEnabled = false;
+                    Row3Col3.IsEnabled = false;
+                    Row3Col4.IsEnabled = false;
+                    Row3Col5.IsEnabled = false;
+                    break;
+                case 3: // Row 4
+                    Row4Col1.IsEnabled = false;
+                    Row4Col2.IsEnabled = false;
+                    Row4Col3.IsEnabled = false;
+                    Row4Col4.IsEnabled = false;
+                    Row4Col5.IsEnabled = false;
+                    break;
+                case 4: // Row 5
+                    Row5Col1.IsEnabled = false;
+                    Row5Col2.IsEnabled = false;
+                    Row5Col3.IsEnabled = false;
+                    Row5Col4.IsEnabled = false;
+                    Row5Col5.IsEnabled = false;
+                    break;
+                case 5: // Row 6
+                    Row6Col1.IsEnabled = false;
+                    Row6Col2.IsEnabled = false;
+                    Row6Col3.IsEnabled = false;
+                    Row6Col4.IsEnabled = false;
+                    Row6Col5.IsEnabled = false;
+                    break;
+            } // switch
+        } // DisableRowEntries()
+
+        private void EnableRowEntries(int row)
+        {
+            switch (row)
+            {
+                case 0: // Row 1
+                    Row1Col1.IsEnabled = true;
+                    Row1Col2.IsEnabled = true;
+                    Row1Col3.IsEnabled = true;
+                    Row1Col4.IsEnabled = true;
+                    Row1Col5.IsEnabled = true;
+                    break;
+                case 1: // Row 2
+                    Row2Col1.IsEnabled = true;
+                    Row2Col2.IsEnabled = true;
+                    Row2Col3.IsEnabled = true;
+                    Row2Col4.IsEnabled = true;
+                    Row2Col5.IsEnabled = true;
+                    break;
+                case 2: // Row 3
+                    Row3Col1.IsEnabled = true;
+                    Row3Col2.IsEnabled = true;
+                    Row3Col3.IsEnabled = true;
+                    Row3Col4.IsEnabled = true;
+                    Row3Col5.IsEnabled = true;
+                    break;
+                case 3: // Row 4
+                    Row4Col1.IsEnabled = true;
+                    Row4Col2.IsEnabled = true;
+                    Row4Col3.IsEnabled = true;
+                    Row4Col4.IsEnabled = true;
+                    Row4Col5.IsEnabled = true;
+                    break;
+                case 4: // Row 5
+                    Row5Col1.IsEnabled = true;
+                    Row5Col2.IsEnabled = true;
+                    Row5Col3.IsEnabled = true;
+                    Row5Col4.IsEnabled = true;
+                    Row5Col5.IsEnabled = true;
+                    break;
+                case 5: // Row 6
+                    Row6Col1.IsEnabled = true;
+                    Row6Col2.IsEnabled = true;
+                    Row6Col3.IsEnabled = true;
+                    Row6Col4.IsEnabled = true;
+                    Row6Col5.IsEnabled = true;
+                    break;
+            } // switch
+        } // EnableRowEntries()
 
     } // MainPage
 } // namespace
