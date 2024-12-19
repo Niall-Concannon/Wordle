@@ -145,6 +145,8 @@
             </Border>
         </Grid>
 
-        <Button Style="{StaticResource submitBtn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
+        <Label x:Name="test" TextColor="Black"/>
+
+        <Button x:Name="submitBtn" Style="{StaticResource submitBtn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
 </ContentPage>

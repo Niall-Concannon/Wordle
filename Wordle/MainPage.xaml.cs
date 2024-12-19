@@ -6,6 +6,8 @@
         private const string sourceFile = "https://raw.githubusercontent.com/DonH-ITS/jsonfiles/main/words.txt";
         private int currentRow = 0;
         private List<string> validWords = new List<string>(); // List adds valid words to check in game
+        string randomWord = "";
+        bool gameWon = false;
 
         public MainPage()
         {
@@ -36,7 +38,8 @@
 
             // Get the word from the file
             int randomIndex = random.Next(lines.Length);
-            string randomWord = lines[randomIndex];
+            randomWord = lines[randomIndex];
+            test.Text = randomWord;
 
             // Put valid words on the list
             foreach (string line in lines)
@@ -188,6 +191,21 @@
                 return; // Exit
             }
 
+            CheckForWin(wordValidator);
+
+            if (gameWon == true)
+            {
+                return; // Exit
+            }
+
+            if(currentRow == 5) // Checks if Game Lost
+            {
+                await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK");
+                DisableAllRows();
+                submitBtn.IsEnabled = false;
+                return; // Exit
+            }
+
             DisableRowEntries(currentRow); // Disable that row
 
             if (currentRow < 5) // Only 5 rows
@@ -300,6 +318,58 @@
         {
             return validWords.Contains(word.ToUpper()); // https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.contains?view=net-9.0
         } // IsValidWord()
+
+        private async void CheckForWin(string guessedWord)
+        {
+            // Compare the guessed word with the correct word (randomWord)
+            if (guessedWord.ToUpper() == randomWord.ToUpper())
+            {
+                gameWon = true;
+                DisableAllRows();
+                submitBtn.IsEnabled = false;
+
+                await DisplayAlert("You Win", "You Guessed the Correct Word", "OK");
+            }
+        } // CheckForWin()
+
+        private void DisableAllRows()
+        {
+            Row1Col1.IsEnabled = false;
+            Row1Col2.IsEnabled = false;
+            Row1Col3.IsEnabled = false;
+            Row1Col4.IsEnabled = false;
+            Row1Col5.IsEnabled = false;
+
+            Row2Col1.IsEnabled = false;
+            Row2Col2.IsEnabled = false;
+            Row2Col3.IsEnabled = false;
+            Row2Col4.IsEnabled = false;
+            Row2Col5.IsEnabled = false;
+
+            Row3Col1.IsEnabled = false;
+            Row3Col2.IsEnabled = false;
+            Row3Col3.IsEnabled = false;
+            Row3Col4.IsEnabled = false;
+            Row3Col5.IsEnabled = false;
+
+            Row4Col1.IsEnabled = false;
+            Row4Col2.IsEnabled = false;
+            Row4Col3.IsEnabled = false;
+            Row4Col4.IsEnabled = false;
+            Row4Col5.IsEnabled = false;
+
+            Row5Col1.IsEnabled = false;
+            Row5Col2.IsEnabled = false;
+            Row5Col3.IsEnabled = false;
+            Row5Col4.IsEnabled = false;
+            Row5Col5.IsEnabled = false;
+
+            Row6Col1.IsEnabled = false;
+            Row6Col2.IsEnabled = false;
+            Row6Col3.IsEnabled = false;
+            Row6Col4.IsEnabled = false;
+            Row6Col5.IsEnabled = false;
+        } // DisableAllRows()
 
     } // MainPage
 } // namespace
