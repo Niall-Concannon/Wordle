@@ -8,7 +8,6 @@
     <ContentPage.Resources>
         <Style x:Key="gridEntry" TargetType="Entry"> <!-- Entry -->
             <Setter Property="MaxLength" Value="1"/>
-            <Setter Property="TextColor" Value="Black"/>
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
@@ -35,6 +34,7 @@
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="WidthRequest" Value="300"/>
         </Style>
+
     </ContentPage.Resources>
 
     <StackLayout Padding="10" VerticalOptions="FillAndExpand">
@@ -43,105 +43,106 @@
 
             <!-- Row 1 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="0">
-                <Entry x:Name="Row1Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row1Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col1Colour}" TextColor="{Binding Row1Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="1">
-                <Entry x:Name="Row1Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row1Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col2Colour}" TextColor="{Binding Row1Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="2">
-                <Entry x:Name="Row1Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row1Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col3Colour}" TextColor="{Binding Row1Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="3">
-                <Entry x:Name="Row1Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row1Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col4Colour}" TextColor="{Binding Row1Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="0" Grid.Column="4">
-                <Entry x:Name="Row1Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row1Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row1Col5Colour}" TextColor="{Binding Row1Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
 
             <!-- Row 2 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="0">
-                <Entry x:Name="Row2Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row2Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col1Colour}" TextColor="{Binding Row2Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="1">
-                <Entry x:Name="Row2Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row2Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col2Colour}" TextColor="{Binding Row2Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="2">
-                <Entry x:Name="Row2Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row2Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col3Colour}" TextColor="{Binding Row2Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="3">
-                <Entry x:Name="Row2Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row2Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col4Colour}" TextColor="{Binding Row2Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="1" Grid.Column="4">
-                <Entry x:Name="Row2Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row2Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row2Col5Colour}" TextColor="{Binding Row2Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
 
             <!-- Row 3 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="0">
-                <Entry x:Name="Row3Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row3Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col1Colour}" TextColor="{Binding Row3Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="1">
-                <Entry x:Name="Row3Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row3Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col2Colour}" TextColor="{Binding Row3Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="2">
-                <Entry x:Name="Row3Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row3Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col3Colour}" TextColor="{Binding Row3Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="3">
-                <Entry x:Name="Row3Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row3Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col4Colour}" TextColor="{Binding Row3Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="2" Grid.Column="4">
-                <Entry x:Name="Row3Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row3Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row3Col5Colour}" TextColor="{Binding Row3Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
 
             <!-- Row 4 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="0">
-                <Entry x:Name="Row4Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row4Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col1Colour}" TextColor="{Binding Row4Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="1">
-                <Entry x:Name="Row4Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row4Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col2Colour}" TextColor="{Binding Row4Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="2">
-                <Entry x:Name="Row4Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row4Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col3Colour}" TextColor="{Binding Row4Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="3">
-                <Entry x:Name="Row4Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row4Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col4Colour}" TextColor="{Binding Row4Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="3" Grid.Column="4">
-                <Entry x:Name="Row4Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row4Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row4Col5Colour}" TextColor="{Binding Row4Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
 
             <!-- Row 5 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="0">
-                <Entry x:Name="Row5Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row5Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col1Colour}" TextColor="{Binding Row5Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="1">
-                <Entry x:Name="Row5Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row5Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col2Colour}" TextColor="{Binding Row5Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="2">
-                <Entry x:Name="Row5Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row5Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col3Colour}" TextColor="{Binding Row5Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="3">
-                <Entry x:Name="Row5Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row5Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col4Colour}" TextColor="{Binding Row5Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="4" Grid.Column="4">
-                <Entry x:Name="Row5Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row5Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row5Col5Colour}" TextColor="{Binding Row5Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
 
             <!-- Row 6 -->
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="0">
-                <Entry x:Name="Row6Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col1Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row6Col1" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col1Colour}" TextColor="{Binding Row6Col1TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="1">
-                <Entry x:Name="Row6Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col2Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row6Col2" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col2Colour}" TextColor="{Binding Row6Col2TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="2">
-                <Entry x:Name="Row6Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col3Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row6Col3" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col3Colour}" TextColor="{Binding Row6Col3TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="3">
-                <Entry x:Name="Row6Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col4Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row6Col4" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col4Colour}" TextColor="{Binding Row6Col4TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
             <Border Style="{StaticResource borderStyle}" Grid.Row="5" Grid.Column="4">
-                <Entry x:Name="Row6Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col5Colour}" TextChanged="Entry_TextChanged" IsEnabled="False"/>
+                <Entry x:Name="Row6Col5" Style="{StaticResource gridEntry}" BackgroundColor="{Binding Row6Col5Colour}" TextColor="{Binding Row6Col5TextColour}" TextChanged="Entry_TextChanged" InputTransparent="True"/>
             </Border>
+
         </Grid>
 
         <Label x:Name="test" TextColor="Black"/>

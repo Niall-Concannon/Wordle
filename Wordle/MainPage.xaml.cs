@@ -1,4 +1,6 @@
-﻿namespace Wordle
+﻿using Microsoft.Maui.Graphics.Text;
+
+namespace Wordle
 {
     public partial class MainPage : ContentPage
     {
@@ -51,12 +53,13 @@
                 validWords.Add(line.ToUpper()); // Has to be upper or all words are invalid
             }
 
-            // Set the first row to allow input
-            Row1Col1.IsEnabled = true;
-            Row1Col2.IsEnabled = true;
-            Row1Col3.IsEnabled = true;
-            Row1Col4.IsEnabled = true;
-            Row1Col5.IsEnabled = true;
+            // Set the first row to allow input - was previously IsEnabled but TextColor wouldn't be white when disabled
+            // https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.visualelement.inputtransparent?view=net-maui-9.0
+            Row1Col1.InputTransparent = false;
+            Row1Col2.InputTransparent = false;
+            Row1Col3.InputTransparent = false;
+            Row1Col4.InputTransparent = false;
+            Row1Col5.InputTransparent = false;
         } // OnAppearing()
 
         // All code below is for downloading the file for the wordle game
@@ -227,46 +230,46 @@
             switch (row)
             {
                 case 0: // Row 1
-                    Row1Col1.IsEnabled = false;
-                    Row1Col2.IsEnabled = false;
-                    Row1Col3.IsEnabled = false;
-                    Row1Col4.IsEnabled = false;
-                    Row1Col5.IsEnabled = false;
+                    Row1Col1.InputTransparent = true;
+                    Row1Col2.InputTransparent = true;
+                    Row1Col3.InputTransparent = true;
+                    Row1Col4.InputTransparent = true;
+                    Row1Col5.InputTransparent = true;
                     break;
                 case 1: // Row 2
-                    Row2Col1.IsEnabled = false;
-                    Row2Col2.IsEnabled = false;
-                    Row2Col3.IsEnabled = false;
-                    Row2Col4.IsEnabled = false;
-                    Row2Col5.IsEnabled = false;
+                    Row2Col1.InputTransparent = true;
+                    Row2Col2.InputTransparent = true;
+                    Row2Col3.InputTransparent = true;
+                    Row2Col4.InputTransparent = true;
+                    Row2Col5.InputTransparent = true;
                     break;
                 case 2: // Row 3
-                    Row3Col1.IsEnabled = false;
-                    Row3Col2.IsEnabled = false;
-                    Row3Col3.IsEnabled = false;
-                    Row3Col4.IsEnabled = false;
-                    Row3Col5.IsEnabled = false;
+                    Row3Col1.InputTransparent = true;
+                    Row3Col2.InputTransparent = true;
+                    Row3Col3.InputTransparent = true;
+                    Row3Col4.InputTransparent = true;
+                    Row3Col5.InputTransparent = true;
                     break;
                 case 3: // Row 4
-                    Row4Col1.IsEnabled = false;
-                    Row4Col2.IsEnabled = false;
-                    Row4Col3.IsEnabled = false;
-                    Row4Col4.IsEnabled = false;
-                    Row4Col5.IsEnabled = false;
+                    Row4Col1.InputTransparent = true;
+                    Row4Col2.InputTransparent = true;
+                    Row4Col3.InputTransparent = true;
+                    Row4Col4.InputTransparent = true;
+                    Row4Col5.InputTransparent = true;
                     break;
                 case 4: // Row 5
-                    Row5Col1.IsEnabled = false;
-                    Row5Col2.IsEnabled = false;
-                    Row5Col3.IsEnabled = false;
-                    Row5Col4.IsEnabled = false;
-                    Row5Col5.IsEnabled = false;
+                    Row5Col1.InputTransparent = true;
+                    Row5Col2.InputTransparent = true;
+                    Row5Col3.InputTransparent = true;
+                    Row5Col4.InputTransparent = true;
+                    Row5Col5.InputTransparent = true;
                     break;
                 case 5: // Row 6
-                    Row6Col1.IsEnabled = false;
-                    Row6Col2.IsEnabled = false;
-                    Row6Col3.IsEnabled = false;
-                    Row6Col4.IsEnabled = false;
-                    Row6Col5.IsEnabled = false;
+                    Row6Col1.InputTransparent = true;
+                    Row6Col2.InputTransparent = true;
+                    Row6Col3.InputTransparent = true;
+                    Row6Col4.InputTransparent = true;
+                    Row6Col5.InputTransparent = true;
                     break;
             } // switch
         } // DisableRowEntries()
@@ -276,46 +279,46 @@
             switch (row)
             {
                 case 0: // Row 1
-                    Row1Col1.IsEnabled = true;
-                    Row1Col2.IsEnabled = true;
-                    Row1Col3.IsEnabled = true;
-                    Row1Col4.IsEnabled = true;
-                    Row1Col5.IsEnabled = true;
+                    Row1Col1.InputTransparent = false;
+                    Row1Col2.InputTransparent = false;
+                    Row1Col3.InputTransparent = false;
+                    Row1Col4.InputTransparent = false;
+                    Row1Col5.InputTransparent = false;
                     break;
                 case 1: // Row 2
-                    Row2Col1.IsEnabled = true;
-                    Row2Col2.IsEnabled = true;
-                    Row2Col3.IsEnabled = true;
-                    Row2Col4.IsEnabled = true;
-                    Row2Col5.IsEnabled = true;
+                    Row2Col1.InputTransparent = false;
+                    Row2Col2.InputTransparent = false;
+                    Row2Col3.InputTransparent = false;
+                    Row2Col4.InputTransparent = false;
+                    Row2Col5.InputTransparent = false;
                     break;
                 case 2: // Row 3
-                    Row3Col1.IsEnabled = true;
-                    Row3Col2.IsEnabled = true;
-                    Row3Col3.IsEnabled = true;
-                    Row3Col4.IsEnabled = true;
-                    Row3Col5.IsEnabled = true;
+                    Row3Col1.InputTransparent = false;
+                    Row3Col2.InputTransparent = false;
+                    Row3Col3.InputTransparent = false;
+                    Row3Col4.InputTransparent = false;
+                    Row3Col5.InputTransparent = false;
                     break;
                 case 3: // Row 4
-                    Row4Col1.IsEnabled = true;
-                    Row4Col2.IsEnabled = true;
-                    Row4Col3.IsEnabled = true;
-                    Row4Col4.IsEnabled = true;
-                    Row4Col5.IsEnabled = true;
+                    Row4Col1.InputTransparent = false;
+                    Row4Col2.InputTransparent = false;
+                    Row4Col3.InputTransparent = false;
+                    Row4Col4.InputTransparent = false;
+                    Row4Col5.InputTransparent = false;
                     break;
                 case 4: // Row 5
-                    Row5Col1.IsEnabled = true;
-                    Row5Col2.IsEnabled = true;
-                    Row5Col3.IsEnabled = true;
-                    Row5Col4.IsEnabled = true;
-                    Row5Col5.IsEnabled = true;
+                    Row5Col1.InputTransparent = false;
+                    Row5Col2.InputTransparent = false;
+                    Row5Col3.InputTransparent = false;
+                    Row5Col4.InputTransparent = false;
+                    Row5Col5.InputTransparent = false;
                     break;
                 case 5: // Row 6
-                    Row6Col1.IsEnabled = true;
-                    Row6Col2.IsEnabled = true;
-                    Row6Col3.IsEnabled = true;
-                    Row6Col4.IsEnabled = true;
-                    Row6Col5.IsEnabled = true;
+                    Row6Col1.InputTransparent = false;
+                    Row6Col2.InputTransparent = false;
+                    Row6Col3.InputTransparent = false;
+                    Row6Col4.InputTransparent = false;
+                    Row6Col5.InputTransparent = false;
                     break;
             } // switch
         } // EnableRowEntries()
@@ -340,41 +343,41 @@
 
         private void DisableAllRows()
         {
-            Row1Col1.IsEnabled = false;
-            Row1Col2.IsEnabled = false;
-            Row1Col3.IsEnabled = false;
-            Row1Col4.IsEnabled = false;
-            Row1Col5.IsEnabled = false;
+            Row1Col1.InputTransparent = true;
+            Row1Col2.InputTransparent = true;
+            Row1Col3.InputTransparent = true;
+            Row1Col4.InputTransparent = true;
+            Row1Col5.InputTransparent = true;
 
-            Row2Col1.IsEnabled = false;
-            Row2Col2.IsEnabled = false;
-            Row2Col3.IsEnabled = false;
-            Row2Col4.IsEnabled = false;
-            Row2Col5.IsEnabled = false;
+            Row2Col1.InputTransparent = true;
+            Row2Col2.InputTransparent = true;
+            Row2Col3.InputTransparent = true;
+            Row2Col4.InputTransparent = true;
+            Row2Col5.InputTransparent = true;
 
-            Row3Col1.IsEnabled = false;
-            Row3Col2.IsEnabled = false;
-            Row3Col3.IsEnabled = false;
-            Row3Col4.IsEnabled = false;
-            Row3Col5.IsEnabled = false;
+            Row3Col1.InputTransparent = true;
+            Row3Col2.InputTransparent = true;
+            Row3Col3.InputTransparent = true;
+            Row3Col4.InputTransparent = true;
+            Row3Col5.InputTransparent = true;
 
-            Row4Col1.IsEnabled = false;
-            Row4Col2.IsEnabled = false;
-            Row4Col3.IsEnabled = false;
-            Row4Col4.IsEnabled = false;
-            Row4Col5.IsEnabled = false;
+            Row4Col1.InputTransparent = true;
+            Row4Col2.InputTransparent = true;
+            Row4Col3.InputTransparent = true;
+            Row4Col4.InputTransparent = true;
+            Row4Col5.InputTransparent = true;
 
-            Row5Col1.IsEnabled = false;
-            Row5Col2.IsEnabled = false;
-            Row5Col3.IsEnabled = false;
-            Row5Col4.IsEnabled = false;
-            Row5Col5.IsEnabled = false;
+            Row5Col1.InputTransparent = true;
+            Row5Col2.InputTransparent = true;
+            Row5Col3.InputTransparent = true;
+            Row5Col4.InputTransparent = true;
+            Row5Col5.InputTransparent = true;
 
-            Row6Col1.IsEnabled = false;
-            Row6Col2.IsEnabled = false;
-            Row6Col3.IsEnabled = false;
-            Row6Col4.IsEnabled = false;
-            Row6Col5.IsEnabled = false;
+            Row6Col1.InputTransparent = true;
+            Row6Col2.InputTransparent = true;
+            Row6Col3.InputTransparent = true;
+            Row6Col4.InputTransparent = true;
+            Row6Col5.InputTransparent = true;
         } // DisableAllRows()
 
         // Method used to check if letters are in the word
@@ -393,66 +396,67 @@
                 // Wordle colour scheme used - https://www.color-hex.com/color-palette/1012607
                 if (guessedLetter == targetLetter)
                 {
-                    SetColourForRow(i, Color.FromRgb(108, 169, 101)); // Green if correct letter and position
+                    SetColourForRow(i, Color.FromRgb(108, 169, 101), Colors.White); // Green if correct letter and position
                 }
                 else if (targetWord.Contains(guessedLetter))
                 {
-                    SetColourForRow(i, Color.FromRgb(200, 182, 83)); // Yellow if correct letter wrong position
+                    SetColourForRow(i, Color.FromRgb(200, 182, 83), Colors.White); // Yellow if correct letter wrong position
                 }
                 else
                 {
-                    SetColourForRow(i, Color.FromRgb(120, 124, 127)); // Grey if not correct letter
+                    SetColourForRow(i, Color.FromRgb(120, 124, 127), Colors.White); // Grey if not correct letter
                 }
             }
         } // CheckLetter()
 
         // Method sets the colours
-        private void SetColourForRow(int col, Color color)
+        private void SetColourForRow(int col, Color colour, Color textColour)
         {
             switch (currentRow)
             {
                 case 0: // Row 1
-                    if (col == 0) _rowColours.Row1Col1Colour = color;
-                    if (col == 1) _rowColours.Row1Col2Colour = color;
-                    if (col == 2) _rowColours.Row1Col3Colour = color;
-                    if (col == 3) _rowColours.Row1Col4Colour = color;
-                    if (col == 4) _rowColours.Row1Col5Colour = color;
+                    if (col == 0) { _rowColours.Row1Col1Colour = colour; _rowColours.Row1Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row1Col2Colour = colour; _rowColours.Row1Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row1Col3Colour = colour; _rowColours.Row1Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row1Col4Colour = colour; _rowColours.Row1Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row1Col5Colour = colour; _rowColours.Row1Col5TextColour = textColour; }
                     break;
                 case 1: // Row 2
-                    if (col == 0) _rowColours.Row2Col1Colour = color;
-                    if (col == 1) _rowColours.Row2Col2Colour = color;
-                    if (col == 2) _rowColours.Row2Col3Colour = color;
-                    if (col == 3) _rowColours.Row2Col4Colour = color;
-                    if (col == 4) _rowColours.Row2Col5Colour = color;
+                    if (col == 0) { _rowColours.Row2Col1Colour = colour; _rowColours.Row2Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row2Col2Colour = colour; _rowColours.Row2Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row2Col3Colour = colour; _rowColours.Row2Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row2Col4Colour = colour; _rowColours.Row2Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row2Col5Colour = colour; _rowColours.Row2Col5TextColour = textColour; }
                     break;
                 case 2: // Row 3
-                    if (col == 0) _rowColours.Row3Col1Colour = color;
-                    if (col == 1) _rowColours.Row3Col2Colour = color;
-                    if (col == 2) _rowColours.Row3Col3Colour = color;
-                    if (col == 3) _rowColours.Row3Col4Colour = color;
-                    if (col == 4) _rowColours.Row3Col5Colour = color;
+                    if (col == 0) { _rowColours.Row3Col1Colour = colour; _rowColours.Row3Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row3Col2Colour = colour; _rowColours.Row3Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row3Col3Colour = colour; _rowColours.Row3Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row3Col4Colour = colour; _rowColours.Row3Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row3Col5Colour = colour; _rowColours.Row3Col5TextColour = textColour; }
                     break;
                 case 3: // Row 4
-                    if (col == 0) _rowColours.Row4Col1Colour = color;
-                    if (col == 1) _rowColours.Row4Col2Colour = color;
-                    if (col == 2) _rowColours.Row4Col3Colour = color;
-                    if (col == 3) _rowColours.Row4Col4Colour = color;
-                    if (col == 4) _rowColours.Row4Col5Colour = color;
+                    if (col == 0) { _rowColours.Row4Col1Colour = colour; _rowColours.Row4Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row4Col2Colour = colour; _rowColours.Row4Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row4Col3Colour = colour; _rowColours.Row4Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row4Col4Colour = colour; _rowColours.Row4Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row4Col5Colour = colour; _rowColours.Row4Col5TextColour = textColour; }
                     break;
                 case 4: // Row 5
-                    if (col == 0) _rowColours.Row5Col1Colour = color;
-                    if (col == 1) _rowColours.Row5Col2Colour = color;
-                    if (col == 2) _rowColours.Row5Col3Colour = color;
-                    if (col == 3) _rowColours.Row5Col4Colour = color;
-                    if (col == 4) _rowColours.Row5Col5Colour = color;
+                    if (col == 0) { _rowColours.Row5Col1Colour = colour; _rowColours.Row5Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row5Col2Colour = colour; _rowColours.Row5Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row5Col3Colour = colour; _rowColours.Row5Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row5Col4Colour = colour; _rowColours.Row5Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row5Col5Colour = colour; _rowColours.Row5Col5TextColour = textColour; }
                     break;
                 case 5: // Row 6
-                    if (col == 0) _rowColours.Row6Col1Colour = color;
-                    if (col == 1) _rowColours.Row6Col2Colour = color;
-                    if (col == 2) _rowColours.Row6Col3Colour = color;
-                    if (col == 3) _rowColours.Row6Col4Colour = color;
-                    if (col == 4) _rowColours.Row6Col5Colour = color;
+                    if (col == 0) { _rowColours.Row6Col1Colour = colour; _rowColours.Row6Col1TextColour = textColour; }
+                    if (col == 1) { _rowColours.Row6Col2Colour = colour; _rowColours.Row6Col2TextColour = textColour; }
+                    if (col == 2) { _rowColours.Row6Col3Colour = colour; _rowColours.Row6Col3TextColour = textColour; }
+                    if (col == 3) { _rowColours.Row6Col4Colour = colour; _rowColours.Row6Col4TextColour = textColour; }
+                    if (col == 4) { _rowColours.Row6Col5Colour = colour; _rowColours.Row6Col5TextColour = textColour; }
                     break;
+
             } // switch
         } // SetColourForRow()
 
