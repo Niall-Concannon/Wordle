@@ -8,10 +8,14 @@
         private List<string> validWords = new List<string>(); // List adds valid words to check in game
         string randomWord = "";
         bool gameWon = false;
+        private RowColours _rowColours;
 
         public MainPage()
         {
             InitializeComponent();
+            // Initalize and set the binding
+            _rowColours = new RowColours();
+            BindingContext = _rowColours;
         } // MainPage()
 
         protected override async void OnAppearing()
@@ -190,6 +194,8 @@
                 await DisplayAlert("Invalid", "Not in word list", "OK");
                 return; // Exit
             }
+
+            CheckLetters(wordValidator);
 
             CheckForWin(wordValidator);
 
@@ -370,6 +376,85 @@
             Row6Col4.IsEnabled = false;
             Row6Col5.IsEnabled = false;
         } // DisableAllRows()
+
+        // Method used to check if letters are in the word
+        private void CheckLetters(string guessedWord)
+        {
+            // Make both capitals due to case sensitivity
+            guessedWord = guessedWord.ToUpper();
+            string targetWord = randomWord.ToUpper();
+
+            // Loop checks each letter
+            for (int i = 0; i < 5; i++)
+            {
+                char guessedLetter = guessedWord[i];
+                char targetLetter = targetWord[i];
+
+                // Wordle colour scheme used - https://www.color-hex.com/color-palette/1012607
+                if (guessedLetter == targetLetter)
+                {
+                    SetColourForRow(i, Color.FromRgb(108, 169, 101)); // Green if correct letter and position
+                }
+                else if (targetWord.Contains(guessedLetter))
+                {
+                    SetColourForRow(i, Color.FromRgb(200, 182, 83)); // Yellow if correct letter wrong position
+                }
+                else
+                {
+                    SetColourForRow(i, Color.FromRgb(120, 124, 127)); // Grey if not correct letter
+                }
+            }
+        } // CheckLetter()
+
+        // Method sets the colours
+        private void SetColourForRow(int col, Color color)
+        {
+            switch (currentRow)
+            {
+                case 0: // Row 1
+                    if (col == 0) _rowColours.Row1Col1Colour = color;
+                    if (col == 1) _rowColours.Row1Col2Colour = color;
+                    if (col == 2) _rowColours.Row1Col3Colour = color;
+                    if (col == 3) _rowColours.Row1Col4Colour = color;
+                    if (col == 4) _rowColours.Row1Col5Colour = color;
+                    break;
+                case 1: // Row 2
+                    if (col == 0) _rowColours.Row2Col1Colour = color;
+                    if (col == 1) _rowColours.Row2Col2Colour = color;
+                    if (col == 2) _rowColours.Row2Col3Colour = color;
+                    if (col == 3) _rowColours.Row2Col4Colour = color;
+                    if (col == 4) _rowColours.Row2Col5Colour = color;
+                    break;
+                case 2: // Row 3
+                    if (col == 0) _rowColours.Row3Col1Colour = color;
+                    if (col == 1) _rowColours.Row3Col2Colour = color;
+                    if (col == 2) _rowColours.Row3Col3Colour = color;
+                    if (col == 3) _rowColours.Row3Col4Colour = color;
+                    if (col == 4) _rowColours.Row3Col5Colour = color;
+                    break;
+                case 3: // Row 4
+                    if (col == 0) _rowColours.Row4Col1Colour = color;
+                    if (col == 1) _rowColours.Row4Col2Colour = color;
+                    if (col == 2) _rowColours.Row4Col3Colour = color;
+                    if (col == 3) _rowColours.Row4Col4Colour = color;
+                    if (col == 4) _rowColours.Row4Col5Colour = color;
+                    break;
+                case 4: // Row 5
+                    if (col == 0) _rowColours.Row5Col1Colour = color;
+                    if (col == 1) _rowColours.Row5Col2Colour = color;
+                    if (col == 2) _rowColours.Row5Col3Colour = color;
+                    if (col == 3) _rowColours.Row5Col4Colour = color;
+                    if (col == 4) _rowColours.Row5Col5Colour = color;
+                    break;
+                case 5: // Row 6
+                    if (col == 0) _rowColours.Row6Col1Colour = color;
+                    if (col == 1) _rowColours.Row6Col2Colour = color;
+                    if (col == 2) _rowColours.Row6Col3Colour = color;
+                    if (col == 3) _rowColours.Row6Col4Colour = color;
+                    if (col == 4) _rowColours.Row6Col5Colour = color;
+                    break;
+            } // switch
+        } // SetColourForRow()
 
     } // MainPage
 } // namespace
