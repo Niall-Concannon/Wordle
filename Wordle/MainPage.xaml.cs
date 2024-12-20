@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Graphics.Text;
-
-namespace Wordle
+﻿namespace Wordle
 {
     public partial class MainPage : ContentPage
     {
@@ -478,6 +476,41 @@ namespace Wordle
 
             } // switch
         } // SetColourForRow()
+
+        private void StartNewGame_Clicked(object sender, EventArgs e)
+        {
+            // Reset game
+            currentRow = 0;
+            gameWon = false;
+
+            // Clear text in all entries
+            Row1Col1.Text = Row1Col2.Text = Row1Col3.Text = Row1Col4.Text = Row1Col5.Text = "";
+            Row2Col1.Text = Row2Col2.Text = Row2Col3.Text = Row2Col4.Text = Row2Col5.Text = "";
+            Row3Col1.Text = Row3Col2.Text = Row3Col3.Text = Row3Col4.Text = Row3Col5.Text = "";
+            Row4Col1.Text = Row4Col2.Text = Row4Col3.Text = Row4Col4.Text = Row4Col5.Text = "";
+            Row5Col1.Text = Row5Col2.Text = Row5Col3.Text = Row5Col4.Text = Row5Col5.Text = "";
+            Row6Col1.Text = Row6Col2.Text = Row6Col3.Text = Row6Col4.Text = Row6Col5.Text = "";
+
+            // Reset colours for all rows
+            _rowColours.Row1Col1Colour = _rowColours.Row1Col2Colour = _rowColours.Row1Col3Colour = _rowColours.Row1Col4Colour = _rowColours.Row1Col5Colour = Colors.White;
+            _rowColours.Row2Col1Colour = _rowColours.Row2Col2Colour = _rowColours.Row2Col3Colour = _rowColours.Row2Col4Colour = _rowColours.Row2Col5Colour = Colors.White;
+            _rowColours.Row3Col1Colour = _rowColours.Row3Col2Colour = _rowColours.Row3Col3Colour = _rowColours.Row3Col4Colour = _rowColours.Row3Col5Colour = Colors.White;
+            _rowColours.Row4Col1Colour = _rowColours.Row4Col2Colour = _rowColours.Row4Col3Colour = _rowColours.Row4Col4Colour = _rowColours.Row4Col5Colour = Colors.White;
+            _rowColours.Row5Col1Colour = _rowColours.Row5Col2Colour = _rowColours.Row5Col3Colour = _rowColours.Row5Col4Colour = _rowColours.Row5Col5Colour = Colors.White;
+            _rowColours.Row6Col1Colour = _rowColours.Row6Col2Colour = _rowColours.Row6Col3Colour = _rowColours.Row6Col4Colour = _rowColours.Row6Col5Colour = Colors.White;
+
+            // Reset text colours for all rows
+            _rowColours.Row1Col1TextColour = _rowColours.Row1Col2TextColour = _rowColours.Row1Col3TextColour = _rowColours.Row1Col4TextColour = _rowColours.Row1Col5TextColour = Colors.Black;
+            _rowColours.Row2Col1TextColour = _rowColours.Row2Col2TextColour = _rowColours.Row2Col3TextColour = _rowColours.Row2Col4TextColour = _rowColours.Row2Col5TextColour = Colors.Black;
+            _rowColours.Row3Col1TextColour = _rowColours.Row3Col2TextColour = _rowColours.Row3Col3TextColour = _rowColours.Row3Col4TextColour = _rowColours.Row3Col5TextColour = Colors.Black;
+            _rowColours.Row4Col1TextColour = _rowColours.Row4Col2TextColour = _rowColours.Row4Col3TextColour = _rowColours.Row4Col4TextColour = _rowColours.Row4Col5TextColour = Colors.Black;
+            _rowColours.Row5Col1TextColour = _rowColours.Row5Col2TextColour = _rowColours.Row5Col3TextColour = _rowColours.Row5Col4TextColour = _rowColours.Row5Col5TextColour = Colors.Black;
+            _rowColours.Row6Col1TextColour = _rowColours.Row6Col2TextColour = _rowColours.Row6Col3TextColour = _rowColours.Row6Col4TextColour = _rowColours.Row6Col5TextColour = Colors.Black;
+
+            submitBtn.IsEnabled = true;
+
+            OnAppearing();
+        } // StartNewGame_Clicked()
 
     } // MainPage
 } // namespace

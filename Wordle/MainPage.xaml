@@ -24,7 +24,7 @@
             <Setter Property="Margin" Value="4"/>
         </Style>
 
-        <Style x:Key="submitBtn" TargetType="Button"> <!-- Submit Button -->
+        <Style x:Key="Btn" TargetType="Button"> <!-- Submit Button -->
             <Setter Property="BackgroundColor" Value="Green"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="TextTransform" Value="Uppercase"/>
@@ -147,6 +147,8 @@
 
         <Label x:Name="test" TextColor="Black"/>
 
-        <Button x:Name="submitBtn" Style="{StaticResource submitBtn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="submitBtn" Style="{StaticResource Btn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
+
+        <Button x:Name="startBtn" Style="{StaticResource Btn}" Clicked="StartNewGame_Clicked" Text="Start new Game" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
 </ContentPage>
