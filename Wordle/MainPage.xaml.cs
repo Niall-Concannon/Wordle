@@ -387,27 +387,46 @@ namespace Wordle
             guessedWord = guessedWord.ToUpper();
             string targetWord = randomWord.ToUpper();
 
-            // Loop checks each letter
+            // Arrays to track letters that have been marked
+            bool[] guessedMarked = new bool[5];
+            bool[] targetMarked = new bool[5];
+
+            // Check for Green
             for (int i = 0; i < 5; i++)
             {
                 char guessedLetter = guessedWord[i];
                 char targetLetter = targetWord[i];
 
-                // Wordle colour scheme used - https://www.color-hex.com/color-palette/1012607
-                if (guessedLetter == targetLetter)
+                if (guessedLetter == targetLetter) // Check if Green
                 {
                     SetColourForRow(i, Color.FromRgb(108, 169, 101), Colors.White); // Green if correct letter and position
+                    // Set true if Green
+                    guessedMarked[i] = true;
+                    targetMarked[i] = true;
                 }
-                else if (targetWord.Contains(guessedLetter))
+                else // Check if Yellow
                 {
-                    SetColourForRow(i, Color.FromRgb(200, 182, 83), Colors.White); // Yellow if correct letter wrong position
-                }
-                else
-                {
-                    SetColourForRow(i, Color.FromRgb(120, 124, 127), Colors.White); // Grey if not correct letter
-                }
-            }
-        } // CheckLetter()
+                    bool isYellow = false;
+
+                    // Check for Yellow
+                    for (int j = 0; j < 5; j++)
+                    {
+                        if (!guessedMarked[i] && !targetMarked[j] && targetWord[j] == guessedLetter)
+                        {
+                            SetColourForRow(i, Color.FromRgb(200, 182, 83), Colors.White); // Yellow if correct letter wrong position
+                            // Set true if Yellow
+                            targetMarked[j] = true;
+                            isYellow = true;
+                        }
+                    }
+
+                    if (!isYellow) // if not Yellow then Grey
+                    {
+                        SetColourForRow(i, Color.FromRgb(120, 124, 127), Colors.White); // Grey if not correct letter
+                    }
+                } // else
+            } // for
+        } // CheckLetters()
 
         // Method sets the colours
         private void SetColourForRow(int col, Color colour, Color textColour)
