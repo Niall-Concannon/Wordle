@@ -1,4 +1,6 @@
-﻿namespace Wordle
+﻿using Plugin.Maui.Audio;
+
+namespace Wordle
 {
     public partial class MainPage : ContentPage
     {
@@ -9,6 +11,7 @@
         string randomWord = "";
         bool gameWon = false;
         private RowColours _rowColours;
+        private IAudioPlayer _audioPlayer;
 
         public MainPage()
         {
@@ -117,6 +120,11 @@
 
         private async void Submit_Clicked(object sender, EventArgs e)
         {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+            _audioPlayer.Play();
+
+            await Task.Delay(500); // Add delay so it doesn't play any audio at the same time
+
             // Variables
             bool allFilled = true;
             string wordValidator = "";
@@ -185,6 +193,9 @@
 
             if (!allFilled)
             {
+                _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error.mp3"));
+                _audioPlayer.Play();
+
                 await DisplayAlert("Invalid", "Not enough letters", "OK");
                 return;  // Exit
             }
@@ -192,6 +203,9 @@
             // Validate the word
             if (!IsValidWord(wordValidator))
             {
+                _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error.mp3"));
+                _audioPlayer.Play();
+
                 await DisplayAlert("Invalid", "Not in word list", "OK");
                 return; // Exit
             }
@@ -207,9 +221,13 @@
 
             if(currentRow == 5) // Checks if Game Lost
             {
-                await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK");
                 DisableAllRows();
                 submitBtn.IsEnabled = false;
+
+                _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("lose.mp3"));
+                _audioPlayer.Play();
+
+                await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK");
                 return; // Exit
             }
 
@@ -334,6 +352,9 @@
                 gameWon = true;
                 DisableAllRows();
                 submitBtn.IsEnabled = false;
+
+                _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("win.mp3"));
+                _audioPlayer.Play();
 
                 await DisplayAlert("You Win", "You Guessed the Correct Word", "OK");
             }
@@ -477,8 +498,11 @@
             } // switch
         } // SetColourForRow()
 
-        private void StartNewGame_Clicked(object sender, EventArgs e)
+        private async void StartNewGame_Clicked(object sender, EventArgs e)
         {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+            _audioPlayer.Play();
+
             // Reset game
             currentRow = 0;
             gameWon = false;
