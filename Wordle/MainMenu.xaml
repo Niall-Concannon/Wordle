@@ -6,7 +6,7 @@
              BackgroundColor="White">
 
     <ContentPage.Resources>
-        <Style x:Key="Btn" TargetType="Button"> <!-- Button -->
+        <Style x:Key="Btn" TargetType="Button"> <!-- Buttons -->
             <Setter Property="BackgroundColor" Value="Green"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="TextTransform" Value="Uppercase"/>
@@ -15,10 +15,37 @@
             <Setter Property="BorderWidth" Value="2"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="WidthRequest" Value="300"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+
+        <Style x:Key="entry" TargetType="Entry"> <!-- Entry -->
+            <Setter Property="Keyboard" Value="Text"/>
+            <Setter Property="WidthRequest" Value="300"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="BackgroundColor" Value="White"/>
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout>
-        <Button x:Name="startBtn" Style="{StaticResource Btn}" Clicked="StartGame_Clicked" VerticalOptions="CenterAndExpand" Text="Start the Game" HorizontalOptions="FillAndExpand"/>
+    <StackLayout Margin="0,75,0,0">
+        <Frame BackgroundColor="LightGrey" WidthRequest="400" HeightRequest="600" CornerRadius="50">
+            <StackLayout>
+                <!-- Entry Box -->
+                <Entry x:Name="fileNameEntry" Style="{StaticResource entry}" Placeholder="Enter Username:" TextChanged="Entry_TextChanged"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                <!-- Create File Button -->
+                <Button x:Name="createBtn" Style="{StaticResource Btn}" Text="Create Save File" Clicked="CreateFile_Clicked" IsEnabled="False"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                <!-- Load File Button -->
+                <Button x:Name="loadBtn" Style="{StaticResource Btn}" Text="Load Save File" Clicked="LoadFile_Clicked" IsEnabled="False" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                <!-- Start Game Button -->
+                <Button x:Name="startBtn" Style="{StaticResource Btn}" Text="Start the Game" Clicked="StartGame_Clicked"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>
