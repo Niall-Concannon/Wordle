@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wordle.MainMenu"
+             Title="Wordle Main Menu"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <Style x:Key="Btn" TargetType="Button"> <!-- Button -->
+            <Setter Property="BackgroundColor" Value="Green"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="BorderWidth" Value="2"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="WidthRequest" Value="300"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Button x:Name="startBtn" Style="{StaticResource Btn}" Clicked="StartGame_Clicked" VerticalOptions="CenterAndExpand" Text="Start the Game" HorizontalOptions="FillAndExpand"/>
+    </StackLayout>
+</ContentPage>

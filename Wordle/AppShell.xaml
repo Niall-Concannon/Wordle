@@ -8,7 +8,12 @@
     Title="Wordle">
 
     <ShellContent
-        Title="Home"
+    Title="MainMenu"
+    ContentTemplate="{DataTemplate local:MainMenu}"
+    Route="MainMenu"/>
+    
+    <ShellContent
+        Title="MainPage"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
