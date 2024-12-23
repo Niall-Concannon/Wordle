@@ -7,14 +7,20 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Wordle">
 
+    <!-- Register the routes to MainMenu, MainPage, and HistoryPage -->
     <ShellContent
-    Title="MainMenu"
-    ContentTemplate="{DataTemplate local:MainMenu}"
-    Route="MainMenu"/>
-    
+        Title="MainMenu"
+        ContentTemplate="{DataTemplate local:MainMenu}"
+        Route="MainMenu" />
+
     <ShellContent
         Title="MainPage"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="HistoryPage"
+        ContentTemplate="{DataTemplate local:HistoryPage}"
+        Route="HistoryPage" />
 
 </Shell>

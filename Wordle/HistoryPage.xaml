@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wordle.HistoryPage"
+             Title="Wordle History Page"
+             BackgroundColor="White">
+
+    <StackLayout Padding="10">
+        <ListView x:Name="HistoryListView" ItemsSource="{Binding Attempts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding RandomWord}" FontSize="18" TextColor="Black" />
+
+                            <Label Text="{Binding NumGuesses}" FontSize="16" TextColor="Green" />
+
+                            <!-- https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings -->
+                            <Label Text="{Binding Timestamp, StringFormat='{0:MM/dd/yyyy HH:mm:ss}'}" FontSize="14" TextColor="Gray" />
+
+                            <Label Text="{Binding FormattedEmojiGrid}" FontSize="18" TextColor="Black" LineBreakMode="WordWrap" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Clear History" Clicked="ClearHistory_Clicked" />
+
+        <Button Text="Back to Main Page" Clicked="ToMainPage_Clicked" />
+    </StackLayout>
+</ContentPage>

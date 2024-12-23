@@ -31,16 +31,8 @@
         <Frame BackgroundColor="LightGrey" WidthRequest="400" HeightRequest="600" CornerRadius="50">
             <StackLayout>
                 <!-- Entry Box -->
-                <Entry x:Name="fileNameEntry" Style="{StaticResource entry}" Placeholder="Enter Username:" TextChanged="Entry_TextChanged"
+                <Entry x:Name="playerNameEntry" Style="{StaticResource entry}" Placeholder="Enter Username:" TextChanged="Entry_TextChanged"
                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
-
-                <!-- Create File Button -->
-                <Button x:Name="createBtn" Style="{StaticResource Btn}" Text="Create Save File" Clicked="CreateFile_Clicked" IsEnabled="False"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
-
-                <!-- Load File Button -->
-                <Button x:Name="loadBtn" Style="{StaticResource Btn}" Text="Load Save File" Clicked="LoadFile_Clicked" IsEnabled="False" 
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
 
                 <!-- Start Game Button -->
                 <Button x:Name="startBtn" Style="{StaticResource Btn}" Text="Start the Game" Clicked="StartGame_Clicked"

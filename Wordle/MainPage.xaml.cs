@@ -1,24 +1,37 @@
 ﻿using Plugin.Maui.Audio;
+using System.Text.Json;
 
 namespace Wordle
 {
     public partial class MainPage : ContentPage
     {
+        // Properties
+        public string PlayerName { get; set; }
+        public string RandomWord { get; set; }
+        public int NumGuesses { get; set; }
+        public List<string> EmojiGrid { get; set; }
+
         // Variables
         private const string sourceFile = "https://raw.githubusercontent.com/DonH-ITS/jsonfiles/main/words.txt";
         private int currentRow = 0;
         private List<string> validWords = new List<string>(); // List adds valid words to check in game
-        string randomWord = "";
+        private string randomWord = "";
         bool gameWon = false;
         private RowColours _rowColours;
         private IAudioPlayer _audioPlayer;
+        private int numGuesses = 0;
 
-        public MainPage()
+        public MainPage(string playerName)
         {
             InitializeComponent();
-            // Initalize and set the binding
+
             _rowColours = new RowColours();
             BindingContext = _rowColours;
+
+            PlayerName = playerName;
+
+            EmojiGrid = new List<string>(); // Initialize grid
+            EmojiGrid.Clear(); // Clear just to make sure its empty
         } // MainPage()
 
         protected override async void OnAppearing()
@@ -46,6 +59,7 @@ namespace Wordle
             // Get the word from the file
             int randomIndex = random.Next(lines.Length);
             randomWord = lines[randomIndex];
+            RandomWord = randomWord; // Assign RandomWord property
             test.Text = randomWord;
 
             // Put valid words on the list
@@ -62,6 +76,7 @@ namespace Wordle
             Row1Col4.InputTransparent = false;
             Row1Col5.InputTransparent = false;
         } // OnAppearing()
+
 
         // All code below is for downloading the file for the wordle game
         // Website - https://www.code4it.dev/blog/download-and-save-files/ helped
@@ -212,6 +227,9 @@ namespace Wordle
 
             CheckLetters(wordValidator);
 
+            numGuesses++;
+            NumGuesses = numGuesses; // Assign NumGuesses property
+
             CheckForWin(wordValidator);
 
             if (gameWon == true)
@@ -228,6 +246,8 @@ namespace Wordle
                 _audioPlayer.Play();
 
                 await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK");
+
+                await SaveAttempt(); // Save the attempt
                 return; // Exit
             }
 
@@ -355,8 +375,10 @@ namespace Wordle
 
                 _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("win.mp3"));
                 _audioPlayer.Play();
-
+                
                 await DisplayAlert("You Win", "You Guessed the Correct Word", "OK");
+
+                await SaveAttempt(); // Save the attempt
             }
         } // CheckForWin()
 
@@ -410,6 +432,9 @@ namespace Wordle
             bool[] guessedMarked = new bool[5];
             bool[] targetMarked = new bool[5];
 
+            // Create another list to fix null breaking the EmojiGrid list
+            List<string> currentRow = new List<string>();
+
             // Check for Green
             for (int i = 0; i < 5; i++)
             {
@@ -419,32 +444,54 @@ namespace Wordle
                 if (guessedLetter == targetLetter) // Check if Green
                 {
                     SetColourForRow(i, Color.FromRgb(108, 169, 101), Colors.White); // Green if correct letter and position
+                    currentRow.Add("🟩"); // Add Green box to emoji grid
                     // Set true if Green
                     guessedMarked[i] = true;
                     targetMarked[i] = true;
                 }
-                else // Check if Yellow
+                else
                 {
+                    currentRow.Add(null); // null if not Green so it keeps length of emoji grid to 5 and doesn't break the whole code
+                }
+            }
+
+            // Check for yellow
+            for (int i = 0; i < 5; i++)
+            {
+                if (!guessedMarked[i])  // if not green
+                {
+                    char guessedLetter = guessedWord[i];
+
                     bool isYellow = false;
 
                     // Check for Yellow
                     for (int j = 0; j < 5; j++)
                     {
-                        if (!guessedMarked[i] && !targetMarked[j] && targetWord[j] == guessedLetter)
+                        if (!targetMarked[j] && guessedLetter == targetWord[j])
                         {
+                            // Mark it yellow
                             SetColourForRow(i, Color.FromRgb(200, 182, 83), Colors.White); // Yellow if correct letter wrong position
+                            currentRow[i] = "🟨"; // Add Yellow box to emoji grid
                             // Set true if Yellow
                             targetMarked[j] = true;
                             isYellow = true;
+                            break; // break to not allow the same letter to be marked again
                         }
                     }
 
                     if (!isYellow) // if not Yellow then Grey
                     {
                         SetColourForRow(i, Color.FromRgb(120, 124, 127), Colors.White); // Grey if not correct letter
+                        currentRow[i] = "🟥"; // Add Red to emoji grid - no grey box emojis
                     }
-                } // else
+                } // if not green
             } // for
+
+            // After processing the current guess, join currentRow into a single string
+            string currentRowString = string.Join(" ", currentRow); // https://learn.microsoft.com/en-us/dotnet/api/system.string.join?view=net-9.0
+
+            // Add the row to the EmojiGrid
+            EmojiGrid.Add(currentRowString);
         } // CheckLetters()
 
         // Method sets the colours
@@ -506,6 +553,7 @@ namespace Wordle
             // Reset game
             currentRow = 0;
             gameWon = false;
+            EmojiGrid.Clear();
 
             // Clear text in all entries
             Row1Col1.Text = Row1Col2.Text = Row1Col3.Text = Row1Col4.Text = Row1Col5.Text = "";
@@ -535,6 +583,49 @@ namespace Wordle
 
             OnAppearing();
         } // StartNewGame_Clicked()
+
+        private async void ViewHistory_Clicked(object sender, EventArgs e)
+        {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+            _audioPlayer.Play();
+
+            await Navigation.PushAsync(new HistoryPage(PlayerName));
+        } // ViewHistory_Clicked()
+
+        private async Task SaveAttempt()
+        {
+            string filePath = Path.Combine(FileSystem.AppDataDirectory, $"{PlayerName}.json");
+
+            // Create new history object
+            History history = new History();
+
+            if (File.Exists(filePath)) // Error Checking
+            {
+                string existingJson = await File.ReadAllTextAsync(filePath);
+                history = JsonSerializer.Deserialize<History>(existingJson);
+            }
+            else
+            {
+                string json = JsonSerializer.Serialize(history);
+                await File.WriteAllTextAsync(filePath, json);
+            }
+
+            // Create the attempt details
+            var attempt = new Attempt
+            {
+                RandomWord = RandomWord.ToUpper(),
+                NumGuesses = NumGuesses,
+                EmojiGrid = string.Join(" ", EmojiGrid), // https://learn.microsoft.com/en-us/dotnet/api/system.string.join?view=net-9.0
+                Timestamp = DateTime.Now
+            };
+
+            // Add the attempt details
+            history.Attempts.Add(attempt);
+
+            // Write to json file
+            string jsonWrite = JsonSerializer.Serialize(history);
+            await File.WriteAllTextAsync(filePath, jsonWrite);
+        } // SaveAttempt()
 
     } // MainPage
 } // namespace
