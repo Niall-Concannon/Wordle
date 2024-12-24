@@ -5,12 +5,30 @@
              Title="Wordle History Page"
              BackgroundColor="White">
 
-    <StackLayout Padding="10">
+    <ContentPage.Resources>
+        <Style x:Key="Btn" TargetType="Button"> <!-- To Main Page Button-->
+            <Setter Property="BackgroundColor" Value="Green" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="HeightRequest" Value="50" />
+        </Style>
+
+        <Style x:Key="ClearBtn" TargetType="Button"> <!-- Clear Button -->
+            <Setter Property="BackgroundColor" Value="Red" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="HeightRequest" Value="50" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10" Spacing="10">
         <ListView x:Name="HistoryListView" ItemsSource="{Binding Attempts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="10" BackgroundColor="LightGray">
                             <Label Text="{Binding RandomWord}" FontSize="18" TextColor="Black" />
 
                             <Label Text="{Binding NumGuesses}" FontSize="16" TextColor="Green" />
@@ -25,8 +43,10 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Clear History" Clicked="ClearHistory_Clicked" />
+        <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,10" Spacing="10">
+            <Button Text="Clear History" Style="{StaticResource ClearBtn}" Clicked="ClearHistory_Clicked" />
 
-        <Button Text="Back to Main Page" Clicked="ToMainPage_Clicked" />
+            <Button Text="Back to Main Page" Style="{StaticResource Btn}" Clicked="ToMainPage_Clicked" />
+        </HorizontalStackLayout>
     </StackLayout>
 </ContentPage>

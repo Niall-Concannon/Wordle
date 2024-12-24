@@ -28,14 +28,20 @@
     </ContentPage.Resources>
 
     <StackLayout Margin="0,75,0,0">
-        <Frame BackgroundColor="LightGrey" WidthRequest="400" HeightRequest="600" CornerRadius="50">
+        <Frame x:Name="frame" BackgroundColor="LightGrey" WidthRequest="400" HeightRequest="600" CornerRadius="50">
             <StackLayout>
+                <!-- Image -->
+                <Image Source="wordle.png" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <!-- Entry Box -->
                 <Entry x:Name="playerNameEntry" Style="{StaticResource entry}" Placeholder="Enter Username:" TextChanged="Entry_TextChanged"
                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
 
                 <!-- Start Game Button -->
                 <Button x:Name="startBtn" Style="{StaticResource Btn}" Text="Start the Game" Clicked="StartGame_Clicked"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                <!-- Settings Button -->
+                <Button x:Name="settingsBtn" Style="{StaticResource Btn}" Text="Settings" Clicked="Settings_Clicked"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </Frame>

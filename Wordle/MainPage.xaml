@@ -38,7 +38,7 @@
     </ContentPage.Resources>
 
     <StackLayout Padding="10" VerticalOptions="FillAndExpand">
-        <Button x:Name="historyBtn" Style="{StaticResource Btn}" Clicked="ViewHistory_Clicked" Text="View History" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="historyBtn" Style="{StaticResource Btn}" Clicked="ViewHistory_Clicked" Text="View History" HorizontalOptions="FillAndExpand" Margin="0,0,0,10"/>
 
         <Grid RowDefinitions="*, *, *, *, *, *" ColumnDefinitions="*, *, *, *, *"
               HorizontalOptions="Center" VerticalOptions="CenterAndExpand">

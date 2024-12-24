@@ -54,4 +54,10 @@ public partial class MainMenu : ContentPage
         }
     } // Entry_TextChanged()
 
+    private async void Settings_Clicked(object sender, EventArgs e)
+    {
+        _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+        _audioPlayer.Play();
+    }
+
 } // MainMenu

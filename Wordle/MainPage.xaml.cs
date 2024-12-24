@@ -552,6 +552,7 @@ namespace Wordle
 
             // Reset game
             currentRow = 0;
+            numGuesses = 0;
             gameWon = false;
             EmojiGrid.Clear();
 
