@@ -21,6 +21,8 @@ public partial class HistoryPage : ContentPage
 
         BindingContext = this;
         LoadHistory();
+
+        LoadSavedTheme();
     } // HistoryPage()
 
     private async void LoadHistory()
@@ -61,5 +63,19 @@ public partial class HistoryPage : ContentPage
         var mainPage = new MainPage(PlayerName);
         await Navigation.PushAsync(mainPage); // Go to the game
     } // ToMainPage_Clicked()
+
+    private void LoadSavedTheme()
+    {
+        var savedTheme = Preferences.Get("AppTheme", "Light");
+
+        if (savedTheme == "Dark")
+        {
+            this.BackgroundColor = Colors.Black;
+        }
+        else
+        {
+            this.BackgroundColor = Colors.White;
+        }
+    } // LoadSavedTheme()
 
 } // HistoryPage

@@ -32,6 +32,8 @@ namespace Wordle
 
             EmojiGrid = new List<string>(); // Initialize grid
             EmojiGrid.Clear(); // Clear just to make sure its empty
+
+            LoadSavedTheme();
         } // MainPage()
 
         protected override async void OnAppearing()
@@ -627,6 +629,30 @@ namespace Wordle
             string jsonWrite = JsonSerializer.Serialize(history);
             await File.WriteAllTextAsync(filePath, jsonWrite);
         } // SaveAttempt()
+
+        private async void Settings_Clicked(object sender, EventArgs e)
+        {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+            _audioPlayer.Play();
+
+            // Initialize MainPage with player name
+            var settingsPage = new SettingsPage(PlayerName);
+            await Navigation.PushAsync(settingsPage); // Go to the game
+        } // Settings_Clicked()
+
+        private void LoadSavedTheme()
+        {
+            var savedTheme = Preferences.Get("AppTheme", "Light");
+
+            if (savedTheme == "Dark")
+            {
+                this.BackgroundColor = Colors.Black;
+            }
+            else
+            {
+                this.BackgroundColor = Colors.White;
+            }
+        } // LoadSavedTheme()
 
     } // MainPage
 } // namespace

@@ -9,6 +9,7 @@ public partial class MainMenu : ContentPage
     public MainMenu()
 	{
 		InitializeComponent();
+        LoadSavedTheme();
     } // MainMenu()
 
     private async void StartGame_Clicked(object sender, EventArgs e)
@@ -58,6 +59,37 @@ public partial class MainMenu : ContentPage
     {
         _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
         _audioPlayer.Play();
+
+        await Task.Delay(500); // Add delay to not overlap sfx
+
+        string playerName = playerNameEntry.Text;
+
+        if(string.IsNullOrEmpty(playerName))
+        {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error.mp3"));
+            _audioPlayer.Play();
+
+            await DisplayAlert("Invalid", "Please enter a Username in the Entry Box", "OK");
+            return; // Exit
+        }
+
+        // Initialize MainPage with player name
+        var settingsPage = new SettingsPage(playerName);
+        await Navigation.PushAsync(settingsPage); // Go to the game
     }
+
+    private void LoadSavedTheme()
+    {
+        var savedTheme = Preferences.Get("AppTheme", "Light");
+
+        if (savedTheme == "Dark")
+        {
+            this.BackgroundColor = Colors.Black;
+        }
+        else
+        {
+            this.BackgroundColor = Colors.White;
+        }
+    } // LoadSavedTheme()
 
 } // MainMenu

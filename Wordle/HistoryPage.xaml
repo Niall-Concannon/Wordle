@@ -28,13 +28,13 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10" BackgroundColor="LightGray">
+                        <StackLayout Padding="10" BackgroundColor="Gray">
                             <Label Text="{Binding RandomWord}" FontSize="18" TextColor="Black" />
 
-                            <Label Text="{Binding NumGuesses}" FontSize="16" TextColor="Green" />
+                            <Label Text="{Binding NumGuesses}" FontSize="16" TextColor="Black" />
 
                             <!-- https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings -->
-                            <Label Text="{Binding Timestamp, StringFormat='{0:MM/dd/yyyy HH:mm:ss}'}" FontSize="14" TextColor="Gray" />
+                            <Label Text="{Binding Timestamp, StringFormat='{0:MM/dd/yyyy HH:mm:ss}'}" FontSize="14" TextColor="Black" />
 
                             <Label Text="{Binding FormattedEmojiGrid}" FontSize="18" TextColor="Black" LineBreakMode="WordWrap" />
                         </StackLayout>

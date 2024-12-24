@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wordle.MainPage"
-             Title="Wordle"
+             Title="Wordle Game"
              BackgroundColor="White">
 
     <ContentPage.Resources>
@@ -36,6 +36,10 @@
         </Style>
 
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="settings.png" Clicked="Settings_Clicked"/>
+    </ContentPage.ToolbarItems>
 
     <StackLayout Padding="10" VerticalOptions="FillAndExpand">
         <Button x:Name="historyBtn" Style="{StaticResource Btn}" Clicked="ViewHistory_Clicked" Text="View History" HorizontalOptions="FillAndExpand" Margin="0,0,0,10"/>
