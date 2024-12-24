@@ -152,10 +152,10 @@
 
         </Grid>
 
-        <Label x:Name="test" TextColor="Black"/>
+        <Label x:Name="TimeLimit" TextColor="Black" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <Button x:Name="submitBtn" Style="{StaticResource Btn}" Clicked="Submit_Clicked" Text="Submit Guess" HorizontalOptions="FillAndExpand"/>
 
-        <Button x:Name="startBtn" Style="{StaticResource Btn}" Clicked="StartNewGame_Clicked" Text="Start new Game" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="startBtn" Style="{StaticResource Btn}" Clicked="StartNewGame_Clicked" Text="New Game / Timer" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
 </ContentPage>

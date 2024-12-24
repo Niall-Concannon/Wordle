@@ -15,10 +15,14 @@ public partial class SettingsPage : ContentPage
         PlayerName = playerName;
 
         LoadSavedTheme();
+        LoadSavedTimeLimit();
     } // SettingsPage()
 
-    private void OnThemeModeToggled(object sender, ToggledEventArgs e)
+    private async void OnThemeModeToggled(object sender, ToggledEventArgs e)
     {
+        _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+        _audioPlayer.Play();
+
         if (themeSwitch.IsToggled) // Dark mode
         {
             // Set dark background
@@ -59,17 +63,46 @@ public partial class SettingsPage : ContentPage
         }
     } // LoadSavedTheme()
 
-    private void OnTimeLimitToggled(object sender, ToggledEventArgs e)
+    // Handle the time limit toggle switch
+    private async void OnTimeLimitToggled(object sender, ToggledEventArgs e)
     {
+        _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+        _audioPlayer.Play();
+
         if (timeLimitSwitch.IsToggled)
         {
             timeLimitLayout.IsVisible = true; // Show time limit Entry
+            Preferences.Set("TimeLimitEnabled", true); // Save time limit state as enabled
         }
         else
         {
             timeLimitLayout.IsVisible = false; // Hide time limit Entry
+            Preferences.Set("TimeLimitEnabled", false); // Save time limit state as disabled
         }
-    } // OnTimeLimitToggled()
+    }
+
+    private void LoadSavedTimeLimit()
+    {
+        bool isTimeLimitEnabled = Preferences.Get("TimeLimitEnabled", false); // Default to false (disabled)
+
+        // Set the time limit switch based on the saved state
+        timeLimitSwitch.IsToggled = isTimeLimitEnabled;
+        timeLimitLayout.IsVisible = isTimeLimitEnabled;
+
+        // If time limit is enabled, load the previously saved time limit value
+        if (isTimeLimitEnabled)
+        {
+            var savedTimeLimit = Preferences.Get("TimeLimitValue", ""); // Default to empty
+            timeLimitEntry.Text = savedTimeLimit; // Set the saved time limit value in the entry
+        }
+    }
+
+    // Save time limit when the value is changed
+    private void OnTimeLimitChanged(object sender, TextChangedEventArgs e)
+    {
+        var timeLimitValue = timeLimitEntry.Text;
+        Preferences.Set("TimeLimitValue", timeLimitValue); // Save time limit value
+    }
 
     private async void ToMainPage_Clicked(object sender, EventArgs e)
     {

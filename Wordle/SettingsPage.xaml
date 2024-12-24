@@ -41,8 +41,8 @@
 
                 <!-- Time Limit Entry -->
                 <StackLayout x:Name="timeLimitLayout" IsVisible="False" Spacing="10">
-                    <Label Text="Time Limit (Milliseconds)" Style="{StaticResource Label}"/>
-                    <Entry x:Name="timeLimitEntry" Style="{StaticResource Entry}" Placeholder="Enter time limit (Milliseconds):"/>
+                    <Label Text="Time Limit (Seconds)" Style="{StaticResource Label}"/>
+                    <Entry x:Name="timeLimitEntry" Style="{StaticResource Entry}" TextChanged="OnTimeLimitChanged" Placeholder="Enter time limit (Seconds):"/>
                 </StackLayout>
 
                 <Button Text="Back to Main Page" Style="{StaticResource Btn}" Clicked="ToMainPage_Clicked"/>

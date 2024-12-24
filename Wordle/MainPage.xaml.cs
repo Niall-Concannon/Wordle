@@ -18,9 +18,11 @@ namespace Wordle
         private string randomWord = "";
         bool gameWon = false;
         private RowColours _rowColours;
-        private IAudioPlayer _audioPlayer;
+        private IAudioPlayer _audioPlayer, _audioClock;
         private int numGuesses = 0;
         private bool hintUsed = false;
+        private System.Timers.Timer _timer;
+        private int countdownTime;
 
         public MainPage(string playerName)
         {
@@ -63,7 +65,6 @@ namespace Wordle
             int randomIndex = random.Next(lines.Length);
             randomWord = lines[randomIndex];
             RandomWord = randomWord; // Assign RandomWord property
-            test.Text = randomWord;
 
             // Put valid words on the list
             foreach (string line in lines)
@@ -379,6 +380,9 @@ namespace Wordle
             if (guessedWord.ToUpper() == randomWord.ToUpper())
             {
                 gameWon = true;
+                if(_audioClock.IsPlaying)
+                    _audioClock.Stop();
+                _timer.Stop();
                 DisableAllRows();
                 submitBtn.IsEnabled = false;
 
@@ -597,6 +601,41 @@ namespace Wordle
 
             submitBtn.IsEnabled = true;
 
+            // Stop previous timers
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer.Dispose();
+            }
+
+            // Load switch
+            bool isTimeLimitEnabled = Preferences.Get("TimeLimitEnabled", false);
+
+            if (isTimeLimitEnabled)
+            {
+                // Load time limit - default 60
+                string savedTimeLimit = Preferences.Get("TimeLimitValue", "60");
+
+                // https://stackoverflow.com/questions/70663010/convert-string-to-int-in-c-sharp-when-string-is-e0305-to-convert-int-is-not-w
+                if (int.TryParse(savedTimeLimit, out int parsedTimeLimit))
+                {
+                    countdownTime = parsedTimeLimit; // parse success
+                }
+                else
+                {
+                    countdownTime = 60; // parse failed
+                }
+
+                // Make timer that ticks every second
+                _timer = new System.Timers.Timer(1000);
+                _timer.Elapsed += TimerElapsed;
+
+                _timer.Start();
+
+
+                TimeLimit.Text = $"Time Left: {countdownTime} seconds";
+            } // if
+
             OnAppearing();
         } // StartNewGame_Clicked()
 
@@ -604,6 +643,9 @@ namespace Wordle
         {
             _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
             _audioPlayer.Play();
+
+            if(_timer != null)
+                _timer.Stop();
 
             await Navigation.PushAsync(new HistoryPage(PlayerName));
         } // ViewHistory_Clicked()
@@ -647,6 +689,9 @@ namespace Wordle
         {
             _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
             _audioPlayer.Play();
+
+            if(_timer != null)
+                _timer.Stop();
 
             // Initialize MainPage with player name
             var settingsPage = new SettingsPage(PlayerName);
@@ -740,6 +785,59 @@ namespace Wordle
 
             hintUsed = true;
         } // Hint_Clicked()
+
+        // Tried to use Dispatch timer but never worked for me for some reason
+        private async void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (gameWon)
+            {
+                _timer.Stop();
+                _audioClock.Stop();
+                return;
+            }
+
+            // if audio null or not playing
+            if (_audioClock == null || !_audioClock.IsPlaying)
+            {
+                _audioClock = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("tick.mp3"));
+                _audioClock.Loop = true;
+                _audioClock.Play();
+            }
+
+            countdownTime--; // Countdown
+
+            // Timer in background so put onto Main Thread
+            Device.BeginInvokeOnMainThread(() => // Update timer
+            {
+                TimeLimit.Text = $"Time Left: {countdownTime} seconds";
+            });
+
+            if (countdownTime <= 0) // End when timer hits 0
+            {
+                _timer.Stop();
+                _audioClock.Stop();
+
+                Device.BeginInvokeOnMainThread(async() =>
+                {
+                    DisableAllRows();
+                    submitBtn.IsEnabled = false;
+                    hintUsed = true; // Stop player from clicking the button
+
+                    _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("lose.mp3"));
+                    _audioPlayer.Play();
+
+                    bool result = await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK", "See Definition");
+
+                    if (!result) // if see definition is clicked
+                    {
+                        await Launcher.OpenAsync("https://www.dictionary.com/browse/" + randomWord);
+                    }
+
+                    await SaveAttempt(); // Save the attempt
+                    return; // Exit
+                });
+            } // if
+        } // TimerElapsed()
 
     } // MainPage
 } // namespace
