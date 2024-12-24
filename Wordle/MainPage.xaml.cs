@@ -647,6 +647,9 @@ namespace Wordle
             if(_timer != null)
                 _timer.Stop();
 
+            if (_audioClock.IsPlaying)
+                _audioClock.Stop();
+
             await Navigation.PushAsync(new HistoryPage(PlayerName));
         } // ViewHistory_Clicked()
 
@@ -692,6 +695,9 @@ namespace Wordle
 
             if(_timer != null)
                 _timer.Stop();
+
+            if (_audioClock.IsPlaying)
+                _audioClock.Stop();
 
             // Initialize MainPage with player name
             var settingsPage = new SettingsPage(PlayerName);
