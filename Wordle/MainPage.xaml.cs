@@ -20,6 +20,7 @@ namespace Wordle
         private RowColours _rowColours;
         private IAudioPlayer _audioPlayer;
         private int numGuesses = 0;
+        private bool hintUsed = false;
 
         public MainPage(string playerName)
         {
@@ -243,11 +244,17 @@ namespace Wordle
             {
                 DisableAllRows();
                 submitBtn.IsEnabled = false;
+                hintUsed = true; // Stop player from clicking the button
 
                 _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("lose.mp3"));
                 _audioPlayer.Play();
 
-                await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK");
+                bool result = await DisplayAlert("You Lost", "Word was: " + randomWord.ToUpper(), "OK", "See Definition");
+
+                if (!result) // if see definition is clicked
+                {
+                    await Launcher.OpenAsync("https://www.dictionary.com/browse/" + randomWord);
+                }
 
                 await SaveAttempt(); // Save the attempt
                 return; // Exit
@@ -378,7 +385,12 @@ namespace Wordle
                 _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("win.mp3"));
                 _audioPlayer.Play();
                 
-                await DisplayAlert("You Win", "You Guessed the Correct Word", "OK");
+                bool result = await DisplayAlert("You Win", "You Guessed the Correct Word", "OK", "See Definition");
+
+                if (!result) // if see definition is clicked - https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/appmodel/launcher?view=net-maui-9.0&tabs=android
+                {
+                    await Launcher.OpenAsync("https://www.dictionary.com/browse/" + randomWord);
+                }
 
                 await SaveAttempt(); // Save the attempt
             }
@@ -556,6 +568,7 @@ namespace Wordle
             currentRow = 0;
             numGuesses = 0;
             gameWon = false;
+            hintUsed = false;
             EmojiGrid.Clear();
 
             // Clear text in all entries
@@ -653,6 +666,80 @@ namespace Wordle
                 this.BackgroundColor = Colors.White;
             }
         } // LoadSavedTheme()
+
+        private async void Hint_Clicked(object sender, EventArgs e)
+        {
+            _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("select.mp3"));
+            _audioPlayer.Play();
+
+            await Task.Delay(500); // Add delay to not overlap audio
+
+            if (hintUsed)
+            {
+                _audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error.mp3"));
+                _audioPlayer.Play();
+
+                await DisplayAlert("Invalid", "You have already used the hint", "OK");
+                return; // Exit
+            }
+
+            Random random = new Random();
+            int pos = random.Next(5);
+
+            // Find which row is in use and then randomly choose one of the boxes
+            if (currentRow == 0)
+            {
+                if (pos == 0) { Row1Col1.Text = randomWord[pos].ToString(); Row1Col1.InputTransparent = true; }
+                else if (pos == 1) { Row1Col2.Text = randomWord[pos].ToString(); Row1Col2.InputTransparent = true; }
+                else if (pos == 2) { Row1Col3.Text = randomWord[pos].ToString(); Row1Col3.InputTransparent = true; }
+                else if (pos == 3) { Row1Col4.Text = randomWord[pos].ToString(); Row1Col4.InputTransparent = true; }
+                else if (pos == 4) { Row1Col5.Text = randomWord[pos].ToString(); Row1Col5.InputTransparent = true; }
+            }
+            else if (currentRow == 1)
+            {
+                if (pos == 0) { Row2Col1.Text = randomWord[pos].ToString(); Row2Col1.InputTransparent = true; }
+                else if (pos == 1) { Row2Col2.Text = randomWord[pos].ToString(); Row2Col2.InputTransparent = true; }
+                else if (pos == 2) { Row2Col3.Text = randomWord[pos].ToString(); Row2Col3.InputTransparent = true; }
+                else if (pos == 3) { Row2Col4.Text = randomWord[pos].ToString(); Row2Col4.InputTransparent = true; }
+                else if (pos == 4) { Row2Col5.Text = randomWord[pos].ToString(); Row2Col5.InputTransparent = true; }
+            }
+            else if (currentRow == 2)
+            {
+                if (pos == 0) { Row3Col1.Text = randomWord[pos].ToString(); Row3Col1.InputTransparent = true; }
+                else if (pos == 1) { Row3Col2.Text = randomWord[pos].ToString(); Row3Col2.InputTransparent = true; }
+                else if (pos == 2) { Row3Col3.Text = randomWord[pos].ToString(); Row3Col3.InputTransparent = true; }
+                else if (pos == 3) { Row3Col4.Text = randomWord[pos].ToString(); Row3Col4.InputTransparent = true; }
+                else if (pos == 4) { Row3Col5.Text = randomWord[pos].ToString(); Row3Col5.InputTransparent = true; }
+            }
+            else if (currentRow == 3)
+            {
+                if (pos == 0) { Row4Col1.Text = randomWord[pos].ToString(); Row4Col1.InputTransparent = true; }
+                else if (pos == 1) { Row4Col2.Text = randomWord[pos].ToString(); Row4Col2.InputTransparent = true; }
+                else if (pos == 2) { Row4Col3.Text = randomWord[pos].ToString(); Row4Col3.InputTransparent = true; }
+                else if (pos == 3) { Row4Col4.Text = randomWord[pos].ToString(); Row4Col4.InputTransparent = true; }
+                else if (pos == 4) { Row4Col5.Text = randomWord[pos].ToString(); Row4Col5.InputTransparent = true; }
+            }
+            else if (currentRow == 4)
+            {
+                if (pos == 0) { Row5Col1.Text = randomWord[pos].ToString(); Row5Col1.InputTransparent = true; }
+                else if (pos == 1) { Row5Col2.Text = randomWord[pos].ToString(); Row5Col2.InputTransparent = true; }
+                else if (pos == 2) { Row5Col3.Text = randomWord[pos].ToString(); Row5Col3.InputTransparent = true; }
+                else if (pos == 3) { Row5Col4.Text = randomWord[pos].ToString(); Row5Col4.InputTransparent = true; }
+                else if (pos == 4) { Row5Col5.Text = randomWord[pos].ToString(); Row5Col5.InputTransparent = true; }
+            }
+            else if (currentRow == 5)
+            {
+                if (pos == 0) { Row6Col1.Text = randomWord[pos].ToString(); Row6Col1.InputTransparent = true; }
+                else if (pos == 1) { Row6Col2.Text = randomWord[pos].ToString(); Row6Col2.InputTransparent = true; }
+                else if (pos == 2) { Row6Col3.Text = randomWord[pos].ToString(); Row6Col3.InputTransparent = true; }
+                else if (pos == 3) { Row6Col4.Text = randomWord[pos].ToString(); Row6Col4.InputTransparent = true; }
+                else if (pos == 4) { Row6Col5.Text = randomWord[pos].ToString(); Row6Col5.InputTransparent = true; }
+            }
+
+            SetColourForRow(pos, Color.FromRgb(108, 169, 101), Colors.White); // Make the entry Green
+
+            hintUsed = true;
+        } // Hint_Clicked()
 
     } // MainPage
 } // namespace

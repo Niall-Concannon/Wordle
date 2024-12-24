@@ -38,6 +38,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="hint.png" Clicked="Hint_Clicked"/>
         <ToolbarItem IconImageSource="settings.png" Clicked="Settings_Clicked"/>
     </ContentPage.ToolbarItems>
 
